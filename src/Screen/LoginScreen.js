@@ -14,10 +14,11 @@ import {Dimensions} from 'react-native';
 import {stringify} from 'querystring';
 
 const LoginScreen = () => {
-  const [text, onChangeText] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   return (
-    <View>
+    <View style={styles.screenContainer}>
       <View style={styles.container}>
         <ImageBackground
           style={styles.imageContainer}
@@ -33,21 +34,23 @@ const LoginScreen = () => {
           <View style={styles.loginContainer}>
             <TextInput
               style={styles.input}
-              onChangeText={onChangeText}
-              value={text}
+              onChangeText={email => setEmail(email)}
               placeholder="Email giriniz "
             />
           </View>
           <View style={styles.loginContainer}>
             <TextInput
               style={styles.input}
-              onChangeText={onChangeText}
-              value={text}
+              secureTextEntry={true}
+              onChangeText={password => setPassword(password)}
               placeholder="Password giriniz"
             />
           </View>
         </View>
       </View>
+      <TouchableOpacity style={styles.forgotButton} onPress={null}>
+        <Text style={styles.forgotText}>Forgot Password?</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={null}>
         <Text style={styles.loginText}>Login</Text>
       </TouchableOpacity>
@@ -60,7 +63,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
+  screenContainer: {
+    alignItems: 'center',
+  },
   imageContainer: {
     height: height,
     width: width,
@@ -77,29 +82,41 @@ const styles = StyleSheet.create({
     padding: 13,
     margin: 20,
   },
+
   loginText: {
     fontSize: 17,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#fbe7e5',
+    color: '#fddfda',
   },
   loginContainer: {
-    backgroundColor: '#fbe7e5',
-    margin: 18,
+    backgroundColor: '#fddfda',
     borderRadius: 9,
+    height: 50,
+    marginBottom: 20,
   },
   genelContainer: {
     paddingTop: 40,
   },
 
   textHeader: {
-    color: '#fbe7e5',
+    color: '#eb7269',
     fontSize: 40,
     fontWeight: 'bold',
   },
   headerContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 95,
+    paddingTop: 90,
+  },
+  forgotButton: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  forgotText: {
+    //textAlign: 'flex-end',
+    color: '#eb7269',
+    fontSize: 15,
+    marginTop: 15,
   },
 });
